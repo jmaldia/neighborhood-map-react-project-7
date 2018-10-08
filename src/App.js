@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { keys } from './keys';
 import GoogleMapReact from 'google-map-react'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
@@ -32,7 +33,7 @@ class App extends Component {
           </a>
         </header>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: 'AIzaSyD2Ow6iH0zHR4v1KFvp96IS2owFoYTWta0' }}
+          bootstrapURLKeys={{ key: keys.googleMapsAPI }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
