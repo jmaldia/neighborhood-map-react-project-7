@@ -8,10 +8,10 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 class App extends Component {
   static defaultProps = {
     center: {
-      lat: 40.81,
-      lng: -74.13
+      lat: 40.8257712,
+      lng: -74.1074718
     },
-    zoom: 11
+    zoom: 15
   };
 
   render() {
@@ -30,19 +30,18 @@ class App extends Component {
           >
             Learn React
           </a>
-
-          <GoogleMapReact
-          bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
+        </header>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: 'AIzaSyD2Ow6iH0zHR4v1KFvp96IS2owFoYTWta0' }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
           <AnyReactComponent
-            lat={40.8167447}
-            lng={-74.1380044}
-            text={'Kreyser Avrora'}
+            lat={40.8257712}
+            lng={-74.1074718}
+            text={''}
           />
         </GoogleMapReact>
-        </header>
       </div>
     );
   }
