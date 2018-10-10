@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+/************
+Start App
+************/
 .App {
   text-align: center;
   width:100%;
@@ -25,6 +38,10 @@
   color: #61dafb;
 }
 
+.App-header, .App p {
+  padding: 15px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,3 +50,35 @@
     transform: rotate(360deg);
   }
 }
+/************
+End App
+************/
+
+
+/************
+Start SideBar
+************/
+
+.SideBar {
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  max-width: 400px;
+  padding: 10px;
+  background-color: #282c34;
+  color: #fff;
+  text-align: left;
+  line-height: 150%;
+}
+
+.SideBar header, .SideBar li {
+  padding: 15px;
+  border-bottom: #fff 1px solid;
+}
+
+.SideBar li {
+}
+
+/************
+End SideBar
+************/

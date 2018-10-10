@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SideBar from './components/SideBar'
 import './App.css';
 import { keys } from './keys';
 import GoogleMapReact from 'google-map-react'
@@ -45,6 +46,10 @@ class App extends Component {
           <h3>RutherFood</h3>
         </header>
         <p>Where to eat in Downtown Rutherford</p>
+
+        <SideBar 
+          locations={this.state.locations}
+        />
         
         <GoogleMapReact
           yesIWantToUseGoogleMapApiInternals={true}
