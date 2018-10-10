@@ -21,29 +21,39 @@ class App extends Component {
       lat: 40.8257712,
       lng: -74.1074718
     },
-    zoom: 15
+    zoom: 18
   }
 
 
   componentDidMount() {
     FoursquareAPI.search().then(locations => {
       this.setState({
-        locations,
-        fsLngLat: {
-          lat: locations[2].location.lat,
-          lng: locations[2].location.lng
-        }
+        locations
+        // ,
+        // fsLngLat: {
+        //   lat: locations.location.lat,
+        //   lng: locations.location.lng
+        // }
       })
-      console.log(locations[2].location.lng)
     })
   }
 
   renderMarkers(map, maps) {
-    let marker = new maps.Marker({
-      position: this.state.fsLngLat,
-      map,
-      title: `${this.state.locations[2].name}\n${this.state.locations[2].location.formattedAddress}`
+    // let marker = 
+    this.state.locations.map(location => {
+      new maps.Marker({
+        position: {
+          lat: location.location.lat, 
+          lng: location.location.lng
+        },
+        map,
+        title: `${location.name}\n${location.location.formattedAddress}`
+      })
     })
+  }
+
+  renderMarkersAll (location) {
+    
   }
 
   render() {
@@ -58,7 +68,7 @@ class App extends Component {
           bootstrapURLKeys={{ key: keys.googleMaps.APIkey }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-          onGoogleApiLoaded={({map, maps}) => this.renderMarkers(map, maps)}
+          onGoogleApiLoaded={({map, maps}) => { this.renderMarkers(map, maps) }}
         >
           <AnyReactComponent
             lat={40.8257712}
