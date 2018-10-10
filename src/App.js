@@ -6,9 +6,16 @@ import GoogleMapReact from 'google-map-react'
 import * as FoursquareAPI from './utils/FoursquareAPI'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>
-let fsData = ''
 
 class App extends Component {
+  state = {
+    locations: [], 
+    fsLngLat: {
+      lat: '',
+      lng: ''
+    }
+  } 
+
   static defaultProps = {
     center: {
       lat: 40.8257712,
@@ -19,14 +26,23 @@ class App extends Component {
 
 
   componentDidMount() {
-    FoursquareAPI.search().then(data => console.log(data))
+    FoursquareAPI.search().then(locations => {
+      this.setState({
+        locations,
+        fsLngLat: {
+          lat: locations[2].location.lat,
+          lng: locations[2].location.lng
+        }
+      })
+      console.log(locations[2].location.lng)
+    })
   }
 
   renderMarkers(map, maps) {
     let marker = new maps.Marker({
-      position: this.props.center,
+      position: this.state.fsLngLat,
       map,
-      title: `----------`
+      title: `${this.state.locations[2].name}\n${this.state.locations[2].location.formattedAddress}`
     })
   }
 
@@ -47,7 +63,7 @@ class App extends Component {
           <AnyReactComponent
             lat={40.8257712}
             lng={-74.1074718}
-            text={`${fsData.venues}`}
+            text={`Rutherford, NJ`}
           />
         </GoogleMapReact>
       </div>
