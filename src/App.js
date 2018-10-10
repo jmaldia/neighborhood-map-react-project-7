@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { keys } from './keys';
 import GoogleMapReact from 'google-map-react'
@@ -9,11 +8,7 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>
 
 class App extends Component {
   state = {
-    locations: [], 
-    fsLngLat: {
-      lat: '',
-      lng: ''
-    }
+    locations: []
   } 
 
   static defaultProps = {
@@ -24,24 +19,16 @@ class App extends Component {
     zoom: 18
   }
 
-
   componentDidMount() {
     FoursquareAPI.search().then(locations => {
-      this.setState({
-        locations
-        // ,
-        // fsLngLat: {
-        //   lat: locations.location.lat,
-        //   lng: locations.location.lng
-        // }
-      })
+      this.setState({ locations })
     })
   }
 
   renderMarkers(map, maps) {
     // let marker = 
     this.state.locations.map(location => {
-      new maps.Marker({
+      return new maps.Marker({
         position: {
           lat: location.location.lat, 
           lng: location.location.lng
@@ -50,10 +37,6 @@ class App extends Component {
         title: `${location.name}\n${location.location.formattedAddress}`
       })
     })
-  }
-
-  renderMarkersAll (location) {
-    
   }
 
   render() {
@@ -65,15 +48,16 @@ class App extends Component {
           </p>
         </header>
         <GoogleMapReact
+          yesIWantToUseGoogleMapApiInternals={true}
           bootstrapURLKeys={{ key: keys.googleMaps.APIkey }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           onGoogleApiLoaded={({map, maps}) => { this.renderMarkers(map, maps) }}
         >
           <AnyReactComponent
-            lat={40.8257712}
-            lng={-74.1074718}
-            text={`Rutherford, NJ`}
+            lat={this.props.center.lat}
+            lng={this.props.center.lng}
+            text=''
           />
         </GoogleMapReact>
       </div>
