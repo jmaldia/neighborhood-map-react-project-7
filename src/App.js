@@ -16,7 +16,7 @@ class App extends Component {
       lat: 40.8257712,
       lng: -74.1074718
     },
-    zoom: 18
+    zoom: 16.5
   }
 
   componentDidMount() {
@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   renderMarkers(map, maps) {
-    // let marker = 
     this.state.locations.map(location => {
       return new maps.Marker({
         position: {
@@ -43,10 +42,10 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            RutherfordMap
-          </p>
+          <h3>RutherFood</h3>
         </header>
+        <p>Where to eat in Downtown Rutherford</p>
+        
         <GoogleMapReact
           yesIWantToUseGoogleMapApiInternals={true}
           bootstrapURLKeys={{ key: keys.googleMaps.APIkey }}
