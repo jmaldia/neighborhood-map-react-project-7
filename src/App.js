@@ -19,7 +19,7 @@ class App extends Component {
 
 
   componentDidMount() {
-    console.log(FoursquareAPI.search())
+    FoursquareAPI.search().then(data => console.log(data))
   }
 
   renderMarkers(map, maps) {
