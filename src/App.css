@@ -1,8 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+/************
+Start App
+************/
 .App {
   text-align: center;
   width:100%;
   height: 100vh;
   max-height: 100vh;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -11,7 +25,10 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  background-color: #2f3640;
   min-height: 50px;
   display: flex;
   flex-direction: column;
@@ -25,6 +42,10 @@
   color: #61dafb;
 }
 
+.App-header {
+  padding: 15px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,3 +54,82 @@
     transform: rotate(360deg);
   }
 }
+/************
+End App
+************/
+
+
+/************
+Start Google Maps
+************/
+
+.Google-map {
+  z-index: 1;
+  height: 100vh;
+}
+
+/************
+End App
+************/
+
+
+
+
+/************
+Start SideBar
+************/
+
+.SideBar {
+  z-index: 2;
+  padding: 90px 10px 30px 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-height: 100vh;
+  max-width: 400px;
+  background-color: #353b48;
+  color: #fff;
+  text-align: left;
+  line-height: 140%;
+  overflow: scroll;
+}
+
+.SideBar header, .SideBar li {
+  padding: 15px;
+  border-bottom: #fff 1px solid;
+}
+
+.SideBar header {
+  text-align: center
+}
+
+.Places {
+  display: flex;
+}
+
+.Places:hover {
+  cursor: pointer;
+  transform: scale(1.10);
+}
+
+.Places h3 {
+  padding-bottom: 10px;
+}
+
+.Places-image {
+  margin-right: 20px;
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.Places-image img {
+  width: 75px;
+}
+
+.Places-info p {
+  font-size: 1rem;
+}
+
+/************
+End SideBar
+************/
