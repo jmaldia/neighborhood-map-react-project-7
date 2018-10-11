@@ -15,7 +15,7 @@ class SideBar extends Component {
                     {
                         this.props.locations.map(location => {
                             return (
-                                <li className="Places" key={location.id}>
+                                <li className="Places" key={location.id} onClick={this.props.click}>
                                     <div className="Places-image">
                                         <img src="https://via.placeholder.com/75x75" width="100" alt="my restaurant"></img>
                                     </div>

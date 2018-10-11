@@ -12,6 +12,7 @@ let marker
 class App extends Component {
   state = {
     locations: [], 
+    modalView: false
     // photoSrc: ''
   } 
 
@@ -27,20 +28,20 @@ class App extends Component {
     FoursquareAPI.search().then(locations => {
       this.setState({ locations })
       locations.forEach(location => {
-        // console.log(location.id);
         FoursquareAPI.getPhoto(location.id)
-          // this.state.locations.forEach(locationState => {
-          //   if (location.id === locationState.id) {
-          //     locationState.photoSrc = photos[0].prefix + '300x300' + photos[0].suffix
-          //   }
-          // })
-          // this.setState({ 
-          //   photoSrc: photos[0].prefix + '300x300' + photos[0].suffix
-          // })
-        // })
+          this.state.locations.forEach(locationState => {
+            if (location.id === locationState.id) {
+              // locationState.photoSrc = photos[0].prefix + '300x300' + photos[0].suffix
+              console.log(locationState)
+            }
+          })
+          this.setState({ 
+            // photoSrc: photos[0].prefix + '300x300' + photos[0].suffix
+          })
+        })
 
       })
-    })
+    // })
   }
 
   renderMarkers(map, maps) {
@@ -66,11 +67,16 @@ class App extends Component {
     })
   }
 
+  showModal() {
+    this.setState({ modalView: true })
+    console.log(this.state.modalView);
+  }
+
   render() {
+    console.log(this.state.modalView);
     return (
       <div className="App">
-
-      <LocationViewModal />
+        {this.state.modalView && <LocationViewModal />}
         <header className="App-header">
           <h3>RutherFood</h3>
         </header>
@@ -78,6 +84,7 @@ class App extends Component {
         <SideBar 
           locations={this.state.locations}
           photo={this.state.photoSrc}
+          click={this.showModal}
         />
         
         <GoogleMapReact
