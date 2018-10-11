@@ -42,7 +42,7 @@ Start App
   color: #61dafb;
 }
 
-.App-header, .App p {
+.App-header {
   padding: 15px;
 }
 
@@ -101,6 +101,14 @@ Start SideBar
 
 .SideBar header {
   text-align: center
+}
+
+.Places h3 {
+  padding-bottom: 10px;
+}
+
+.Places p {
+  font-size: .85rem;
 }
 
 /************

@@ -11,7 +11,7 @@ let marker
 class App extends Component {
   state = {
     locations: [], 
-    photoSrc: ''
+    // photoSrc: ''
   } 
 
   static defaultProps = {
@@ -25,11 +25,20 @@ class App extends Component {
   componentDidMount() {
     FoursquareAPI.search().then(locations => {
       this.setState({ locations })
-    })
-    FoursquareAPI.getPhoto().then(photos => {
-      this.setState({ 
-        photoSrc: photos[0].prefix + '300x300' + photos[0].suffix
-       })
+      locations.forEach(location => {
+        // console.log(location.id);
+        FoursquareAPI.getPhoto(location.id)
+          // this.state.locations.forEach(locationState => {
+          //   if (location.id === locationState.id) {
+          //     locationState.photoSrc = photos[0].prefix + '300x300' + photos[0].suffix
+          //   }
+          // })
+          // this.setState({ 
+          //   photoSrc: photos[0].prefix + '300x300' + photos[0].suffix
+          // })
+        // })
+
+      })
     })
   }
 
