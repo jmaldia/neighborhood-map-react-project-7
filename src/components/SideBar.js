@@ -5,6 +5,10 @@ class SideBar extends Component {
     state = {
         locations: this.props.locations
     }
+
+    componentDidMount() {
+    }
+    
     render() {
         return(
             <div className="SideBar">
@@ -18,6 +22,7 @@ class SideBar extends Component {
                                 <li key={location.id}>
                                     <h3>{location.name}</h3>
                                     <p>{location.location.formattedAddress}</p>
+                                    <img src={this.props.photo} width="100" alt="my restaurant"></img>
                                 </li>
                             )
                         })

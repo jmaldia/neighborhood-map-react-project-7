@@ -25,7 +25,10 @@ Start App
 }
 
 .App-header {
-  background-color: #282c34;
+  z-index: 3;
+  position: fixed;
+  width: 100%;
+  background-color: #2f3640;
   min-height: 50px;
   display: flex;
   flex-direction: column;
@@ -61,6 +64,7 @@ Start Google Maps
 ************/
 
 .Google-map {
+  z-index: 1;
   height: 100vh;
 }
 
@@ -76,12 +80,14 @@ Start SideBar
 ************/
 
 .SideBar {
+  z-index: 2;
+  padding: 90px 10px 30px 10px;
   position: absolute;
-  z-index: 1;
+  top: 0;
+  left: 0;
   max-height: 100vh;
   max-width: 400px;
-  padding: 10px;
-  background-color: #282c34;
+  background-color: #353b48;
   color: #fff;
   text-align: left;
   line-height: 150%;
@@ -93,7 +99,8 @@ Start SideBar
   border-bottom: #fff 1px solid;
 }
 
-.SideBar li {
+.SideBar header {
+  text-align: center
 }
 
 /************
