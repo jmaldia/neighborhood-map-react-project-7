@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import '../App.css'
 
 class SideBar extends Component {
-    state = {
-        locations: this.props.locations
-    }
-
     componentDidMount() {
     }
 
