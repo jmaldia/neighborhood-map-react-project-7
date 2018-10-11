@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SideBar from './components/SideBar'
+import LocationViewModal from './components/LocationViewModal'
 import './App.css';
 import { keys } from './keys';
 import GoogleMapReact from 'google-map-react'
@@ -68,6 +69,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+      <LocationViewModal />
         <header className="App-header">
           <h3>RutherFood</h3>
         </header>

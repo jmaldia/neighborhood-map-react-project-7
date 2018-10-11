@@ -7,7 +7,7 @@ class LocationViewModal extends Component {
 
     render() {
         return(
-            <div className="LocationViewModal">
+            <div className="Location-view-modal">
                 This is the modal
             </div>
         )

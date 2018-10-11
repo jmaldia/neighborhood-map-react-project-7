@@ -133,3 +133,26 @@ Start SideBar
 /************
 End SideBar
 ************/
+
+
+
+
+/************
+Start Location View Modal
+************/
+
+.Location-view-modal {
+  z-index: 5;
+  margin: auto 0;
+  position: absolute;
+  top: 150px;
+  left: 450px;
+  width: 400px;
+  height: 500px;
+  border-radius: 5px;
+  background-color: #61dafb;
+}
+
+/************
+End Location View Modal
+************/
