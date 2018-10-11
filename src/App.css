@@ -90,7 +90,7 @@ Start SideBar
   background-color: #353b48;
   color: #fff;
   text-align: left;
-  line-height: 150%;
+  line-height: 140%;
   overflow: scroll;
 }
 
@@ -103,12 +103,31 @@ Start SideBar
   text-align: center
 }
 
+.Places {
+  display: flex;
+}
+
+.Places:hover {
+  cursor: pointer;
+  transform: scale(1.10);
+}
+
 .Places h3 {
   padding-bottom: 10px;
 }
 
-.Places p {
-  font-size: .85rem;
+.Places-image {
+  margin-right: 20px;
+  max-width: 75px;
+  max-height: 75px;
+}
+
+.Places-image img {
+  width: 75px;
+}
+
+.Places-info p {
+  font-size: 1rem;
 }
 
 /************

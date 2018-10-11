@@ -20,9 +20,13 @@ class SideBar extends Component {
                         this.props.locations.map(location => {
                             return (
                                 <li className="Places" key={location.id}>
-                                    <img src="https://via.placeholder.com/150x150" width="100" alt="my restaurant"></img>
-                                    <h3>{location.name}</h3>
-                                    { location.location.formattedAddress.map(addr => <p>{addr}</p>) }
+                                    <div className="Places-image">
+                                        <img src="https://via.placeholder.com/75x75" width="100" alt="my restaurant"></img>
+                                    </div>
+                                    <div className="Places-info">
+                                        <h3>{location.name}</h3>
+                                        <p>{location.location.address}</p>
+                                    </div>
                                 </li>
                             )
                         })
@@ -36,3 +40,4 @@ class SideBar extends Component {
 export default SideBar
 
 // add to LI later > <img src={this.props.photo} width="100" alt="my restaurant"></img>
+// { location.location.formattedAddress.map(addr => <p>{addr}</p>) }
