@@ -46,12 +46,13 @@ class App extends Component {
           <h3>RutherFood</h3>
         </header>
         <p>Where to eat in Downtown Rutherford</p>
-
+      
         <SideBar 
           locations={this.state.locations}
         />
         
         <GoogleMapReact
+          className="Google-map"
           yesIWantToUseGoogleMapApiInternals={true}
           bootstrapURLKeys={{ key: keys.googleMaps.APIkey }}
           defaultCenter={this.props.center}
