@@ -72,7 +72,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.modalView && <LocationViewModal />}
+        {this.state.showModalBool && <LocationViewModal locations={this.state.locations} />}
+
         <header className="App-header">
           <h3>RutherFood</h3>
         </header>
