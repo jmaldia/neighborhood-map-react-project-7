@@ -14,10 +14,11 @@ class SideBar extends Component {
                 <ol>
                     {
                         this.props.locations.map(location => {
+                            let image = location.photoSrc
                             return (
-                                <li className="Places" key={location.id} onClick={this.props.click}>
-                                    <div className="Places-image">
-                                        <img src="https://via.placeholder.com/75x75" width="100" alt="my restaurant"></img>
+                                <li className="Places" key={location.id} onClick={this.props.showModal}>
+                                    <div className="Places-image">   
+                                        <img src={image} width="100" alt="my restaurant"></img>
                                     </div>
                                     <div className="Places-info">
                                         <h3>{location.name}</h3>
@@ -37,3 +38,4 @@ export default SideBar
 
 // add to LI later > <img src={this.props.photo} width="100" alt="my restaurant"></img>
 // { location.location.formattedAddress.map(addr => <p>{addr}</p>) }
+//onClick={this.props.click}

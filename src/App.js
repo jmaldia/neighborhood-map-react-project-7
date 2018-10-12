@@ -12,8 +12,8 @@ let marker
 class App extends Component {
   state = {
     locations: [], 
-    modalView: false
-    // photoSrc: ''
+    showModalBool: false,
+    photoSrc: ''
   } 
 
   static defaultProps = {
@@ -27,21 +27,17 @@ class App extends Component {
   componentDidMount() {
     FoursquareAPI.search().then(locations => {
       this.setState({ locations })
+
       locations.forEach(location => {
         FoursquareAPI.getPhoto(location.id)
-          this.state.locations.forEach(locationState => {
-            if (location.id === locationState.id) {
-              // locationState.photoSrc = photos[0].prefix + '300x300' + photos[0].suffix
-              console.log(locationState)
-            }
+          .then(photoURL => {
+            location.photoSrc = photoURL
+            this.setState((prevState) => ({
+                locations: prevState.locations.filter(filteredLocations => filteredLocations.id !== location.id).concat([location])
+            }))
           })
-          this.setState({ 
-            // photoSrc: photos[0].prefix + '300x300' + photos[0].suffix
-          })
-        })
-
-      })
-    // })
+      })  
+    })
   }
 
   renderMarkers(map, maps) {
@@ -56,24 +52,24 @@ class App extends Component {
         title: `${location.name}\n${location.location.formattedAddress}`
       })
 
-      marker.addListener('click', () => {
-        if (marker.getAnimation() !== null) {
-          marker.setAnimation(null);
-        } else {
-          marker.setAnimation(maps.Animation.BOUNCE);
-        }
-      })
+      // marker.addListener('click', () => {
+      //   if (marker.getAnimation() !== null) {
+      //     marker.setAnimation(null);
+      //   } else {
+      //     marker.setAnimation(maps.Animation.BOUNCE);
+      //   }
+      // })
+
       return marker
     })
   }
 
   showModal() {
-    this.setState({ modalView: true })
-    console.log(this.state.modalView);
+    this.setState({ showModalBool: true })
+    console.log(this.state.showModalBool);
   }
 
   render() {
-    console.log(this.state.modalView);
     return (
       <div className="App">
         {this.state.modalView && <LocationViewModal />}
