@@ -10,11 +10,18 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>
 let marker
 
 class App extends Component {
-  state = {
-    locations: [], 
-    showModalBool: false,
-    photoSrc: ''
-  } 
+  constructor(props) {
+    super(props)
+    this.state = {
+      locations: [], 
+      showModalBool: false,
+      infoOn: [],
+      photoSrc: ''
+    } 
+
+    this.showInfo = this.showInfo.bind(this)
+    this.renderMarkers = this.renderMarkers.bind(this)
+  }
 
   static defaultProps = {
     center: {
@@ -32,6 +39,7 @@ class App extends Component {
         FoursquareAPI.getPhoto(location.id)
           .then(photoURL => {
             location.photoSrc = photoURL
+            location.infoOn = false
             this.setState((prevState) => ({
                 locations: prevState.locations.filter(filteredLocations => filteredLocations.id !== location.id).concat([location])
             }))
@@ -69,19 +77,37 @@ class App extends Component {
     console.log(this.state.showModalBool);
   }
 
+  // TODO: 
+  // 1. close all info when another one is clicked
+  showInfo(location) {
+    this.state.locations.forEach(locationHere => {
+      console.log(locationHere.id, location.id) 
+      console.log(location.infoOn)
+      if (locationHere.id === location.id) {
+        location.infoOn = !location.infoOn
+      } else {
+        locationHere.infoOn = false
+      }
+    })
+    console.log(location.infoOn)
+    this.setState((prevState) => ({
+        locations: prevState.locations
+    }))
+  }
+
   render() {
     return (
       <div className="App">
         {this.state.showModalBool && <LocationViewModal locations={this.state.locations} />}
 
         <header className="App-header">
-          <h3>RutherFood</h3>
+          <h3 onClick={this.showInfo}>RutherFood</h3>
         </header>
       
         <SideBar 
           locations={this.state.locations}
           photo={this.state.photoSrc}
-          click={this.showModal}
+          showInfo={this.showInfo}
         />
         
         <GoogleMapReact

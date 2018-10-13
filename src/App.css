@@ -110,8 +110,20 @@ Start SideBar
   overflow: hidden;
 }
 
-.Places:hover {
+.Places-height-sh {
+  height: 55px;
+  overflow: hidden;
+}
+
+.Places-height-tl {
   height: 100%;
+  border-top: #fff 1px solid;
+  background-color: #2f3640;
+  cursor: pointer;
+}
+
+.Places:hover {
+  /* height: 100%; */
   border-top: #fff 1px solid;
   background-color: #2f3640;
   cursor: pointer;
