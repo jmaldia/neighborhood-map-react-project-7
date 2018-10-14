@@ -6,14 +6,15 @@ import { keys } from './keys';
 import GoogleMapReact from 'google-map-react'
 import * as FoursquareAPI from './utils/FoursquareAPI'
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>
 let marker
+const AnyReactComponent = ({ text }) => <div>{text}</div>
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      locations: [], 
+      locations: [],
+      markers: [],
       showModalBool: false,
       infoOn: [],
       photoSrc: ''
@@ -21,6 +22,7 @@ class App extends Component {
 
     this.showInfo = this.showInfo.bind(this)
     this.renderMarkers = this.renderMarkers.bind(this)
+    this.clickNameToShowInfo = this.clickNameToShowInfo.bind(this)
   }
 
   static defaultProps = {
@@ -48,48 +50,69 @@ class App extends Component {
     })
   }
 
+  
+
   renderMarkers(map, maps) {
-    this.state.locations.map(location => {
-       marker = new maps.Marker({
+    let infowindow = new maps.InfoWindow()
+    this.state.locations.forEach(location => {
+      infowindow = {
+        content: `<h1>${location.name}</h1>
+                  <h3>${location.location.address}</h3>`
+      }
+
+      marker = new maps.Marker({
         position: {
           lat: location.location.lat, 
           lng: location.location.lng
         },
         map,
-        animation: maps.Animation.DROP,
-        title: `${location.name}\n${location.location.formattedAddress}`
+        animation: maps.Animation.DROP
       })
 
-      // marker.addListener('click', () => {
-      //   if (marker.getAnimation() !== null) {
-      //     marker.setAnimation(null);
-      //   } else {
-      //     marker.setAnimation(maps.Animation.BOUNCE);
-      //   }
-      // })
+      marker.addListener(marker, 'click', (marker) => {
+        infowindow.open(map, marker)
+
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(maps.Animation.BOUNCE);
+        }
+      })
+
+      marker.id = location.id
+
+      this.setState((prevState) => ({
+        markers: prevState.markers.filter(filteredMarkers => filteredMarkers.id !== marker.id).concat([marker])
+      }))
 
       return marker
     })
+
+    maps.event.addListener(map, 'click', function() {
+      infowindow.close()
+    })
   }
 
-  showModal() {
-    this.setState({ showModalBool: true })
-    console.log(this.state.showModalBool);
+  clickNameToShowInfo(id) {
+    this.state.markers.forEach(filteredMarker => {
+      if (filteredMarker.id === id) {
+        // filteredMarker.map.trigger(filteredMarker.id, 'click')
+        console.log(filteredMarker)
+        return filteredMarker.id
+      }
+    })
   }
 
-  // TODO: 
-  // 1. close all info when another one is clicked
   showInfo(location) {
     this.state.locations.forEach(locationHere => {
-      console.log(locationHere.id, location.id) 
-      console.log(location.infoOn)
       if (locationHere.id === location.id) {
         location.infoOn = !location.infoOn
+        this.clickNameToShowInfo(location.id)
       } else {
         locationHere.infoOn = false
       }
     })
-    console.log(location.infoOn)
+    
     this.setState((prevState) => ({
         locations: prevState.locations
     }))
