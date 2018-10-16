@@ -5,7 +5,7 @@ const lng = "40.8257712"
 const lat = "-74.1074718"
 const categoryId = " 4d4b7105d754a06374d81259"
 const radius = 600
-const version = "20181015"
+const version = "20181016"
 
 
 export const search = () =>
