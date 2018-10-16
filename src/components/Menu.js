@@ -31,10 +31,10 @@ const Menu = props => {
                                         { location.location.crossStreet && <p>Cross Street(s): {location.location.crossStreet}</p> }
                                     </div>
                                     <div className="Places-category">
-                                        { location.category && <p>Category: {location.categories[0].name}</p> }
+                                        <p>Category: { location.categories ? <span>{location.categories[0].name}</span> : 'Uncategorized' }</p>
                                     </div>
                                     <div className="Places-delivery">
-                                        { location.delivery && <p><a href={location.delivery.url}>Order Now</a></p> }
+                                        <p>{ location.delivery ? <a href={location.delivery.url}>Order Now</a> : 'Delivery not available'}</p>
                                     </div>
                                     
                                 </div>

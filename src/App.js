@@ -75,7 +75,6 @@ class App extends Component {
   clickMarker = (marker) => {
     this.closeAllInfoWindow()
     marker.isOpen = true
-    console.log(marker)
 
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
