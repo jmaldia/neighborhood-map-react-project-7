@@ -1,9 +1,9 @@
 import React from 'react'
 import '../App.css'
 
-const SideBar = props => {
+const Menu = props => {
     return(
-        <div className="SideBar">
+        <div className="Menu">
             <header>
                 <h2>THE SPOTS</h2>
             </header>
@@ -47,7 +47,7 @@ const SideBar = props => {
     )
 }
 
-export default SideBar
+export default Menu
 
 // add to LI later > <img src={this.props.photo} width="100" alt="my restaurant"></img>
 // { location.location.formattedAddress.map(addr => <p>{addr}</p>) }

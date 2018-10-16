@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SideBar from './components/SideBar'
+import Menu from './components/Menu'
 import GoogleMapComponent from './components/GoogleMapComponent'
 import * as FoursquareAPI from './utils/FoursquareAPI'
 import './App.css';
