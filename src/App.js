@@ -43,7 +43,7 @@ class App extends Component {
             this.setState((prevState) => ({
                 locations: prevState.locations.filter(filteredLocations => filteredLocations.id !== location.id).concat([location])
             }))
-          })
+          }).catch(err => console.log(err))
       }) 
 
       this.setState({ 

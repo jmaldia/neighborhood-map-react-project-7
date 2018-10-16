@@ -5,8 +5,8 @@ import '../App.css'
 
 const MapComponent = withScriptjs(withGoogleMap(props =>
   <GoogleMap
-    defaultZoom={15}
-    zoom={15}
+    defaultZoom={16}
+    zoom={16}
     defaultCenter={{ lat: 40.8257712, lng: -74.1074718 }}
     center={{ lat: 40.8257712, lng: -74.1074718 }}
   >
