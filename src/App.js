@@ -106,7 +106,7 @@ class App extends Component {
 export default App
 
 
-
+// this.clickMarker(this.state.markers.filter(marker => location.id === marker.id))
 
   // static defaultProps = {
   //   center: {
