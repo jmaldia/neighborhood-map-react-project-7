@@ -1,9 +1,15 @@
 import { keys } from '../keys.js'
 
 const url = "https://api.foursquare.com/v2/venues/"
+const lng = "40.8257712"
+const lat = "-74.1074718"
+const categoryId = " 4d4b7105d754a06374d81259"
+const radius = 600
+const version = "20181015"
+
 
 export const search = () =>
-  fetch(`${url}search?ll=40.8257712,-74.1074718&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=20181010&categoryId=4d4b7105d754a06374d81259&radius=600&limit=3`)
+  fetch(`${url}search?ll=${lng},${lat}&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=${version}&categoryId=${categoryId}&radius=${radius}&limit=3`)
     .then(res => res.json())
     .then(data => {
         if (data.meta.errorType) {
@@ -15,7 +21,7 @@ export const search = () =>
 
 
 export const getPhoto = (venueId) =>
-    fetch(`https://api.foursquare.com/v2/venues/${venueId}/photos?limit=1&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=20131016`)
+    fetch(`https://api.foursquare.com/v2/venues/${venueId}/photos?limit=1&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=${version}`)
         .then(res => res.json())
         .then(data => {  
             if (data.meta.errorType) {

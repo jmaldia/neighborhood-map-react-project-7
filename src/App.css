@@ -13,8 +13,8 @@ Start App
 ************/
 .App {
   text-align: center;
-  width:100%;
-  height: 100vh;
+  /* width:100%;
+  height: 100vh; */
   max-height: 100vh;
   overflow: hidden;
 }
@@ -26,7 +26,7 @@ Start App
 
 .App-header {
   z-index: 3;
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   background-color: #2f3640;
   min-height: 50px;
@@ -60,16 +60,17 @@ End App
 
 
 /************
-Start Google Maps
+Start Map Area
 ************/
 
-.Google-map {
-  z-index: 1;
-  height: 100vh;
+.Map-area {
+  display: flex;
+  /* flex-direction: column; */
+  min-height: 100%;
 }
 
 /************
-End App
+End Map Area
 ************/
 
 
@@ -78,16 +79,15 @@ End App
 /************
 Start SideBar
 ************/
-
 .SideBar {
-  z-index: 2;
+  /* z-index: 2; */
   padding: 90px 10px 30px 10px;
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   max-height: 100vh;
   max-width: 400px;
-  min-width: 300px;
+  width: 25%;
   background-color: #353b48;
   color: #fff;
   text-align: center;
@@ -151,7 +151,6 @@ Start SideBar
 .Places-address, .Places-cross-street, .Places-category, .Places-delivery {
   margin-bottom: 15px;
 }
-
 /************
 End SideBar
 ************/
@@ -159,22 +158,14 @@ End SideBar
 
 
 
+
 /************
-Start Location View Modal
+Start Google Maps
 ************/
 
-.Location-view-modal {
-  z-index: 5;
-  margin: auto 0;
-  position: absolute;
-  top: 150px;
-  left: 450px;
-  width: 400px;
-  height: 500px;
-  border-radius: 5px;
-  background-color: #61dafb;
+.Google-maps {
 }
 
 /************
-End Location View Modal
+End Google Maps
 ************/
