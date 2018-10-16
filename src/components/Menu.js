@@ -31,10 +31,10 @@ const Menu = props => {
                                         { location.location.crossStreet && <p>Cross Street(s): {location.location.crossStreet}</p> }
                                     </div>
                                     <div className="Places-category">
-                                        <p>Category: {location.categories[0].name}</p>
+                                        <p>Category: { location.categories ? <span>{location.categories[0].name}</span> : 'Uncategorized' }</p>
                                     </div>
                                     <div className="Places-delivery">
-                                        { location.delivery && <p><a href={location.delivery.url}>Order Now</a></p> }
+                                        <p>{ location.delivery ? <a href={location.delivery.url}>Order Now</a> : 'Delivery not available'}</p>
                                     </div>
                                     
                                 </div>
@@ -48,15 +48,3 @@ const Menu = props => {
 }
 
 export default Menu
-
-// add to LI later > <img src={this.props.photo} width="100" alt="my restaurant"></img>
-// { location.location.formattedAddress.map(addr => <p>{addr}</p>) }
-//onClick={this.props.click}
-
-// <div className="Places-image">   
-//     <img src={location.photoSrc} width="100" alt={location.name}></img>
-// </div>
-// <div className="Places-info">
-//     <h3>{location.name}</h3>
-//     <p>{location.location.address}</p>
-// </div>

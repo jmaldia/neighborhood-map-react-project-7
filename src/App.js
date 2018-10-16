@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import * as FoursquareAPI from './utils/FoursquareAPI'
+
 import Menu from './components/Menu'
 import GoogleMapComponent from './components/GoogleMapComponent'
-import * as FoursquareAPI from './utils/FoursquareAPI'
+
 import './App.css';
 
 class App extends Component {
@@ -14,6 +16,7 @@ class App extends Component {
 
     this.showInfo = this.showInfo.bind(this)
     this.clickMarker = this.clickMarker.bind(this)
+    this.closeAllInfoWindow = this.closeAllInfoWindow.bind(this)
   }
 
   componentDidMount() {
@@ -50,13 +53,17 @@ class App extends Component {
     })
   }
 
-
+  // Shows more information about the location on the side menu
+  // Also opens the infowindow on the marker
   showInfo(location) {
     this.state.locations.forEach(locationHere => {
-      if (locationHere.id === location.id) {
+      if (locationHere.id === location.id && !location.infoOn) {
         location.infoOn = !location.infoOn
-        this.clickNameToShowInfo(location.id)
-      } else {
+        this.clickMarker(this.state.markers.find(marker => location.id === marker.id ))
+      } else if (locationHere.id === location.id && location.infoOn) {
+        location.infoOn = !location.infoOn
+        this.closeAllInfoWindow()
+      }  else {
         locationHere.infoOn = false
       }
     })
@@ -66,12 +73,15 @@ class App extends Component {
 
   // Shows infoWindow for only selected marker
   clickMarker = (marker) => {
+    this.closeAllInfoWindow()
+    marker.isOpen = true
+
+    this.setState((prevState) => ({ markers: prevState.markers }))
+  }
+  
+  closeAllInfoWindow() {
     this.state.markers.forEach(markerMap => {
-      if (marker.id === markerMap.id) {
-        marker.isOpen = true
-      } else {
-        markerMap.isOpen = false
-      }
+      markerMap.isOpen = false
     })
 
     this.setState((prevState) => ({ markers: prevState.markers }))
@@ -87,7 +97,10 @@ class App extends Component {
         </header>
 
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
-          
+          <Menu 
+            locations={this.state.locations}
+            showInfo={this.showInfo}
+          />
 
           <GoogleMapComponent
             className="Google-maps"
@@ -104,99 +117,3 @@ class App extends Component {
 }
 
 export default App
-
-
-// this.clickMarker(this.state.markers.filter(marker => location.id === marker.id))
-
-  // static defaultProps = {
-  //   center: {
-  //     lat: 40.8257712,
-  //     lng: -74.1074718
-  //   },
-  //   zoom: 16.5
-  // }
-
-
-// <SideBar 
-//             locations={this.state.locations}
-//             photo={this.state.photoSrc}
-//             showInfo={this.showInfo}
-//           />
-
-// const AnyReactComponent = ({ text }) => <div>{text}</div>
-// <AnyReactComponent
-// lat={this.props.center.lat}
-// lng={this.props.center.lng}
-// />
-
-
-// import GoogleMapReact from 'google-map-react'
-// <GoogleMapReact
-    //   bootstrapURLKeys={{ key: keys.googleMaps.APIkey }}
-    //   defaultCenter={this.props.center}
-    //   defaultZoom={this.props.zoom}
-    //   // onGoogleApiLoaded={({map, maps}) => { this.renderMarkers(map, maps) }}
-    //   yesIWantToUseGoogleMapApiInternals={true}
-    // >
-    // </GoogleMapReact>
-
-
-
-
-
-
-  
-
-    // this.renderMarkers = this.renderMarkers.bind(this)
-    // this.clickNameToShowInfo = this.clickNameToShowInfo.bind(this)
-  // renderMarkers(map, maps) {
-  //   let infowindow = new maps.InfoWindow()
-  //   this.state.locations.forEach(location => {
-  //     infowindow = {
-  //       content: `<h1>${location.name}</h1>
-  //                 <h3>${location.location.address}</h3>`
-  //     }
-
-  //     marker = new maps.Marker({
-  //       position: {
-  //         lat: location.location.lat, 
-  //         lng: location.location.lng
-  //       },
-  //       map,
-  //       animation: maps.Animation.DROP
-  //     })
-
-  //     marker.addListener(marker, 'click', (marker) => {
-  //       infowindow.open(map, marker)
-
-  //       if (marker.getAnimation() !== null) {
-  //         marker.setAnimation(null);
-  //       } else {
-  //         marker.setAnimation(maps.Animation.BOUNCE);
-  //       }
-  //     })
-
-  //     marker.id = location.id
-
-  //     this.setState((prevState) => ({
-  //       markers: prevState.markers.filter(filteredMarkers => filteredMarkers.id !== marker.id).concat([marker])
-  //     }))
-
-  //     return marker
-  //   })
-
-  //   maps.event.addListener(map, 'click', function() {
-  //     infowindow.close()
-  //   })
-  // }
-
-  // clickNameToShowInfo(id) {
-  //   this.state.markers.forEach(filteredMarker => {
-  //     if (filteredMarker.id === id) {
-  //       // filteredMarker.map.trigger(filteredMarker.id, 'click')
-  //       // filteredMarker.trigger(filteredMarker, 'click');
-  //       console.log(filteredMarker.__e3_.click)
-  //       return filteredMarker.id
-  //     }
-  //   })
-  // }

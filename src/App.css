@@ -19,21 +19,16 @@ Start App
   overflow: hidden;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
 .App-header {
   z-index: 3;
   /* position: fixed; */
   width: 100%;
   background-color: #2f3640;
   min-height: 50px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   font-size: calc(10px + 2.5vmin);
   color: white;
 }
@@ -77,17 +72,13 @@ End Map Area
 
 
 /************
-Start SideBar
+Start Menu
 ************/
-.SideBar {
-  /* z-index: 2; */
-  padding: 90px 10px 30px 10px;
-  /* position: absolute;
-  top: 0;
-  left: 0; */
+.Menu {
   max-height: 100vh;
+  min-width: 250px;
   max-width: 400px;
-  width: 25%;
+  width: 30%;
   background-color: #353b48;
   color: #fff;
   text-align: center;
@@ -95,12 +86,12 @@ Start SideBar
   overflow: scroll;
 }
 
-.SideBar header, .SideBar li {
+.Menu header, .Menu li {
   padding: 15px;
   border-bottom: #fff 1px solid;
 }
 
-.SideBar header {
+.Menu header {
   text-align: center
 }
 
@@ -152,7 +143,7 @@ Start SideBar
   margin-bottom: 15px;
 }
 /************
-End SideBar
+End Menu
 ************/
 
 
