@@ -65,7 +65,7 @@ Start Map Area
 
 .Map-area {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   min-height: 100%;
 }
 
@@ -79,7 +79,6 @@ End Map Area
 /************
 Start SideBar
 ************/
-
 .SideBar {
   /* z-index: 2; */
   padding: 90px 10px 30px 10px;
@@ -152,7 +151,6 @@ Start SideBar
 .Places-address, .Places-cross-street, .Places-category, .Places-delivery {
   margin-bottom: 15px;
 }
-
 /************
 End SideBar
 ************/

@@ -1,39 +1,24 @@
 import React, { Component } from 'react';
 import SideBar from './components/SideBar'
 import GoogleMapComponent from './components/GoogleMapComponent'
-import './App.css';
 import * as FoursquareAPI from './utils/FoursquareAPI'
-
-let marker
+import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       locations: [],
-      markers: [],
-      center: []
-      // showModalBool: false,
-      // infoOn: [],
-      // photoSrc: ''
+      markers: []
     } 
 
     this.showInfo = this.showInfo.bind(this)
+    this.clickMarker = this.clickMarker.bind(this)
   }
-
-  // static defaultProps = {
-  //   center: {
-  //     lat: 40.8257712,
-  //     lng: -74.1074718
-  //   },
-  //   zoom: 16.5
-  // }
 
   componentDidMount() {
     FoursquareAPI.search().then(searchResults => {
-      // const { locations } = searchResults.response
-      console.log(searchResults)
-      // const { center } = searchResults.response.geocode.feature.qeometry
+      // Creates an array or markers for the map
       const markers = searchResults.map(location => {
         return {
           id: location.id,
@@ -46,6 +31,7 @@ class App extends Component {
         }
       })
       
+      // Adds a photo URL to each location
       searchResults.forEach(location => {
         FoursquareAPI.getPhoto(location.id)
           .then(photoURL => {
@@ -78,8 +64,7 @@ class App extends Component {
     this.setState((prevState) => ({ locations: prevState.locations }))
   }
 
-
-
+  // Shows infoWindow for only selected marker
   clickMarker = (marker) => {
     this.state.markers.forEach(markerMap => {
       if (marker.id === markerMap.id) {
@@ -91,11 +76,6 @@ class App extends Component {
 
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
-
-
-
-
-
 
 
   render() {
@@ -124,6 +104,17 @@ class App extends Component {
 }
 
 export default App
+
+
+
+
+  // static defaultProps = {
+  //   center: {
+  //     lat: 40.8257712,
+  //     lng: -74.1074718
+  //   },
+  //   zoom: 16.5
+  // }
 
 
 // <SideBar 
