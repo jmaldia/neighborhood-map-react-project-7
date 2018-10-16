@@ -75,21 +75,21 @@ class App extends Component {
       }
     })
     
-    this.setState((prevState) => ({
-        locations: prevState.locations
-    }))
+    this.setState((prevState) => ({ locations: prevState.locations }))
   }
 
 
 
   clickMarker = (marker) => {
-    console.log(marker)
-    marker.isOpen = true
+    this.state.markers.forEach(markerMap => {
+      if (marker.id === markerMap.id) {
+        marker.isOpen = true
+      } else {
+        markerMap.isOpen = false
+      }
+    })
 
-    this.setState({ markers: Object.assign(this.state.markers, marker) })
-    // this.setState((prevState) => ({
-    //   markers: prevState.markers.filter(filteredMarker => filteredMarker.id !== marker.id).concat([marker])
-    // }))
+    this.setState((prevState) => ({ markers: prevState.markers }))
   }
 
 
