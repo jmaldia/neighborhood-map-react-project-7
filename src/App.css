@@ -59,6 +59,33 @@ End App
 
 
 /************
+Start Menu Button
+************/
+.Menu-button {
+  z-index: 1;
+  position: fixed;
+  top: calc(10px + .5vmin);
+  left: calc(10px + .5vmin);
+  padding: 10px 15px;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: calc(9px + .5vmin);
+  color: #fff;
+  display: none;
+}
+
+.Menu-button:hover {
+  background-color: #3c6382;
+}
+/************
+End Menu Button
+************/
+
+
+
+
+/************
 Start Map Area
 ************/
 .Map-area {
@@ -176,7 +203,6 @@ Start Filter
 }
 
 .Filter-dropdown select {
-
   border-radius: 2px;
   width: 100%;
   display: none;
@@ -191,7 +217,29 @@ End Filter
 /************
 Start Media Queries
 ************/
+@media only screen and (max-width: 650px) {
+  .Menu {
+    min-width: 0;
+    width: 0;
+    transform: translateX(-300px);
+  }
+  
+  .Menu-button {
+    display: block;
+  }
 
+  .Menu-button-on {
+    min-width: 300px;
+    width: 100%;
+    transform: translateX(0);
+  }
+
+  .Menu-button-off {
+    min-width: 0;
+    width: 0;
+    transform: translateX(-300px);
+  }
+}
 /************
 End Media Queries
 ************/

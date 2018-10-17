@@ -14,7 +14,8 @@ class App extends Component {
       results: [], 
       markers: [], 
       resultsMarkers: [], 
-      categories: []
+      categories: [],
+      menuButton: false
     } 
 
     this.showInfo = this.showInfo.bind(this)
@@ -22,6 +23,7 @@ class App extends Component {
     this.closeAllInfoWindow = this.closeAllInfoWindow.bind(this)
     this.filterLocations = this.filterLocations.bind(this)
     this.enterKeyPressed = this.enterKeyPressed.bind(this)
+    this.menuButtonForMobile = this.menuButtonForMobile.bind(this)
   }
 
   componentDidMount() {
@@ -99,6 +101,13 @@ class App extends Component {
     } 
   }
 
+  // When menu button is clicked, the menu is shown
+  menuButtonForMobile() {
+    this.setState({ 
+      menuButton: !this.state.menuButton 
+    })
+    console.log(this.state.menuButton)
+  }
 
   // Shows infoWindow for only selected marker
   clickMarker = (marker) => {
@@ -152,6 +161,15 @@ class App extends Component {
         <header className="App-header">
           <h3 onClick={this.showInfo}>RutherFood</h3>
         </header>
+
+        <div 
+          className="Menu-button"
+          aria-label="Menu" 
+          role="Menu" 
+          onClick={this.menuButtonForMobile}
+        >
+          Menu
+        </div>
 
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
           <Menu 
