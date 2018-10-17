@@ -153,6 +153,8 @@ class App extends Component {
           <h3 onClick={this.showInfo}>RutherFood</h3>
         </header>
 
+        <div aria-label="Menu" role="Menu" className="Menu-button">Menu</div>
+
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
           <Menu 
             {...this.state}
