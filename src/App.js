@@ -52,6 +52,7 @@ class App extends Component {
           }).catch(err => console.log(err))
       }) 
 
+      // Sets initial values for state
       this.setState({ 
         locations: searchResults, 
         results: searchResults,
@@ -68,6 +69,7 @@ class App extends Component {
       if (locationHere.id === location.id && !location.infoOn) {
         location.infoOn = !location.infoOn
         this.clickMarker(this.state.markers.find(marker => {
+          // Adds animation to marker when location is clicked
           if (location.id === marker.id) {
             marker.animation = 2
             return marker
@@ -89,6 +91,7 @@ class App extends Component {
     }))
   }
 
+  // For a11y - simulates click when location is focused and enter key pressed
   enterKeyPressed(event, location) {
     var code = event.keyCode || event.which;
     if(code === 13) { 
@@ -118,6 +121,7 @@ class App extends Component {
     let filteredLocations 
     let filteredMarkers
 
+    // Code to filter menu and markers
     if (value === 'All') {
       console.log(this.state.markers)
       filteredLocations = this.state.locations
@@ -133,7 +137,6 @@ class App extends Component {
         }
       
       })
-      console.log(filteredMarkers)
     }
 
     this.setState({ 
@@ -143,7 +146,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.filteredMarkers)
     return (
       <div className="App">
         
