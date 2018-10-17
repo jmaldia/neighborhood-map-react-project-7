@@ -91,7 +91,8 @@ Start Menu
 
 .Menu header {
   padding: 25px;
-  /* border-bottom: #fff 3px solid; */
+  font-size: 1.3rem;
+  font-weight: bolder;
   color: #353b48;
   background-color: #ecf0f1;
 }
