@@ -35,7 +35,8 @@ class App extends Component {
           lat: location.location.lat, 
           lng: location.location.lng, 
           isOpen: false, 
-          isVisible: true
+          isVisible: true,
+          animation: 0
         }
       })
       
@@ -54,7 +55,7 @@ class App extends Component {
         locations: searchResults, 
         results: searchResults,
         markers, 
-        filteredMarkers: markers
+        markerResults: markers
       }) 
     })
   }
@@ -65,7 +66,14 @@ class App extends Component {
     this.state.locations.forEach(locationHere => {
       if (locationHere.id === location.id && !location.infoOn) {
         location.infoOn = !location.infoOn
-        this.clickMarker(this.state.markers.find(marker => location.id === marker.id ))
+        this.clickMarker(this.state.markers.find(marker => {
+          if (location.id === marker.id) {
+            marker.animation = 2
+            return marker
+          } else {
+            return null
+          }
+        }))
       } else if (locationHere.id === location.id && location.infoOn) {
         location.infoOn = !location.infoOn
         this.closeAllInfoWindow()
@@ -74,8 +82,12 @@ class App extends Component {
       }
     })
     
-    this.setState((prevState) => ({ locations: prevState.locations }))
+    this.setState((prevState) => ({ 
+      locations: prevState.locations,
+      markers: prevState.markers
+    }))
   }
+
 
   // Shows infoWindow for only selected marker
   clickMarker = (marker) => {
@@ -104,16 +116,26 @@ class App extends Component {
       filteredMarkers = this.state.markers
     } else {
       filteredLocations = this.state.locations.filter(location => location.categories[0].name === value)
-      filteredMarkers = this.state.markers.filter(marker => marker.categories === value)
+      filteredMarkers = this.state.markers.filter(marker => {
+        if (marker.categories === value){
+          console.log(marker.categories)
+          return marker
+        } else {
+          return null
+        }
+      
+      })
+      console.log(filteredMarkers)
     }
 
     this.setState({ 
-      results: filteredLocations, 
-      resultsMarkers: filteredMarkers
+      results: filteredLocations,
+      markerResults: filteredMarkers
     })
   }
 
   render() {
+    console.log(this.state.filteredMarkers)
     return (
       <div className="App">
         

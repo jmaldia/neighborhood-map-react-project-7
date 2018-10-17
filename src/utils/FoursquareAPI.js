@@ -9,7 +9,7 @@ const version = "20181016"
 
 
 export const search = () =>
-  fetch(`${url}search?ll=${lng},${lat}&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=${version}&categoryId=${categoryId}&radius=${radius}&limit=5`)
+  fetch(`${url}search?ll=${lng},${lat}&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=${version}&categoryId=${categoryId}&radius=${radius}&limit=12`)
     .then(res => res.json())
     .then(data => {
         if (data.meta.errorType) {

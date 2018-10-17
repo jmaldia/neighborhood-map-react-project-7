@@ -12,11 +12,12 @@ const MapComponent = withScriptjs(withGoogleMap(props =>
     center={{ lat: 40.8257712, lng: -74.1074718 }}
   >
     { 
-        props.filteredMarkers && props.filteredMarkers.filter(marker => marker.isVisible).map((marker) => (
+        props.markerResults && props.markerResults.filter(marker => marker.isVisible).map((marker) => (
             <Marker 
                 key={`m-${marker.id}`} 
                 position={{ lat: marker.lat, lng: marker.lng }} 
                 onClick={() => props.clickMarker(marker) }
+                animation={marker.animation}
             >
                 { marker.isOpen && (
                     <InfoWindow>
@@ -30,6 +31,7 @@ const MapComponent = withScriptjs(withGoogleMap(props =>
 ))
 
 class GoogleMapComponent extends Component {
+    
     render() {
         return (
             <MapComponent

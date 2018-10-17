@@ -60,7 +60,6 @@ Start Map Area
 
 .Map-area {
   display: flex;
-  /* flex-direction: column; */
   min-height: 100%;
 }
 
@@ -76,7 +75,7 @@ Start Menu
 ************/
 .Menu {
   max-height: 100vh;
-  min-width: 250px;
+  min-width: 300px;
   max-width: 400px;
   width: 30%;
   background-color: #353b48;
@@ -87,16 +86,22 @@ Start Menu
 }
 
 .Menu header, .Menu li {
+  text-align: center
+}
+
+.Menu header {
+  padding: 25px;
+  /* border-bottom: #fff 3px solid; */
+  color: #353b48;
+  background-color: #ecf0f1;
+}
+
+.Menu li {
   padding: 15px;
   border-bottom: #fff 1px solid;
 }
 
-.Menu header {
-  text-align: center
-}
-
 .Places {
-  /* display: flex; */
   height: 55px;
   overflow: hidden;
 }
@@ -114,11 +119,9 @@ Start Menu
 }
 
 .Places:hover {
-  /* height: 100%; */
   border-top: #fff 1px solid;
   background-color: #2f3640;
   cursor: pointer;
-  /* transform: scale(1.10); */
 }
 
 .Places h3 {
@@ -145,14 +148,14 @@ Start Menu
 /************
 End Menu
 ************/
-
+.Filter {
+  border-bottom: 2px solid #fff;
+}
 
 .Filter-dropdown {
-  /* border-top: 2px solid #fff; */
-  border-bottom: 5px solid #fff;
-  padding: 20px;
+  margin: 20px;
   cursor: pointer;
-  width: 100%;
+  width: 80%;
   background-color: transparent;
   color: #fff;
   font-size: 1rem;
@@ -163,15 +166,16 @@ End Menu
 }
 
 .Filter-dropdown select {
-  width: 100%
+
+  border-radius: 2px;
+  width: 100%;
+  display: none;
 }
 
 /************
 Start Google Maps
 ************/
 
-.Google-maps {
-}
 
 /************
 End Google Maps
