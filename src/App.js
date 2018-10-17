@@ -160,8 +160,8 @@ class App extends Component {
           />
 
           <GoogleMapComponent
-            className="Google-maps"
             {...this.state}
+            className="Google-maps"
             clickMarker={this.clickMarker}
           />
         </div>

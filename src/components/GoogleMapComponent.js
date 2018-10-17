@@ -15,6 +15,7 @@ const MapComponent = withScriptjs(withGoogleMap(props =>
         props.markerResults && props.markerResults.filter(marker => marker.isVisible).map((marker) => (
             <Marker 
                 key={`m-${marker.id}`} 
+                aria-label="Marker"
                 position={{ lat: marker.lat, lng: marker.lng }} 
                 onClick={() => props.clickMarker(marker) }
                 animation={marker.animation}
@@ -36,6 +37,7 @@ class GoogleMapComponent extends Component {
         return (
             <MapComponent
                 {...this.props}
+                aria-label="Map"
                 googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&key=${keys.googleMaps.APIkey}`}
                 loadingElement={<div style={{ height: `100%`,  width: `100%` }} />}
                 containerElement={<div style={{ height: `100vh`, width: `100%` }} />}
