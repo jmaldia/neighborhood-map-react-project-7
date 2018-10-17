@@ -11,12 +11,16 @@ class App extends Component {
     super(props)
     this.state = {
       locations: [],
-      markers: []
+      results: [], 
+      markers: [], 
+      resultsMarkers: [], 
+      categories: []
     } 
 
     this.showInfo = this.showInfo.bind(this)
     this.clickMarker = this.clickMarker.bind(this)
     this.closeAllInfoWindow = this.closeAllInfoWindow.bind(this)
+    this.filterLocations = this.filterLocations.bind(this)
   }
 
   componentDidMount() {
@@ -27,10 +31,12 @@ class App extends Component {
           id: location.id,
           name: location.name, 
           address: location.location.address,
+          categories: location.categories[0].name, 
           lat: location.location.lat, 
           lng: location.location.lng, 
           isOpen: false, 
-          isVisible: true
+          isVisible: true,
+          animation: 0
         }
       })
       
@@ -39,7 +45,6 @@ class App extends Component {
         FoursquareAPI.getPhoto(location.id)
           .then(photoURL => {
             location.photoSrc = photoURL
-            location.infoOn = false
             this.setState((prevState) => ({
                 locations: prevState.locations.filter(filteredLocations => filteredLocations.id !== location.id).concat([location])
             }))
@@ -48,7 +53,9 @@ class App extends Component {
 
       this.setState({ 
         locations: searchResults, 
-        markers
+        results: searchResults,
+        markers, 
+        markerResults: markers
       }) 
     })
   }
@@ -59,7 +66,14 @@ class App extends Component {
     this.state.locations.forEach(locationHere => {
       if (locationHere.id === location.id && !location.infoOn) {
         location.infoOn = !location.infoOn
-        this.clickMarker(this.state.markers.find(marker => location.id === marker.id ))
+        this.clickMarker(this.state.markers.find(marker => {
+          if (location.id === marker.id) {
+            marker.animation = 2
+            return marker
+          } else {
+            return null
+          }
+        }))
       } else if (locationHere.id === location.id && location.infoOn) {
         location.infoOn = !location.infoOn
         this.closeAllInfoWindow()
@@ -68,8 +82,12 @@ class App extends Component {
       }
     })
     
-    this.setState((prevState) => ({ locations: prevState.locations }))
+    this.setState((prevState) => ({ 
+      locations: prevState.locations,
+      markers: prevState.markers
+    }))
   }
+
 
   // Shows infoWindow for only selected marker
   clickMarker = (marker) => {
@@ -79,16 +97,45 @@ class App extends Component {
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
   
+  // Closes all the infoWindow - helper
   closeAllInfoWindow() {
     this.state.markers.forEach(markerMap => {
       markerMap.isOpen = false
     })
-
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
 
+  // Function called by dropdown to filter by category
+  filterLocations(value) {
+    let filteredLocations 
+    let filteredMarkers
+
+    if (value === 'All') {
+      console.log(this.state.markers)
+      filteredLocations = this.state.locations
+      filteredMarkers = this.state.markers
+    } else {
+      filteredLocations = this.state.locations.filter(location => location.categories[0].name === value)
+      filteredMarkers = this.state.markers.filter(marker => {
+        if (marker.categories === value){
+          console.log(marker.categories)
+          return marker
+        } else {
+          return null
+        }
+      
+      })
+      console.log(filteredMarkers)
+    }
+
+    this.setState({ 
+      results: filteredLocations,
+      markerResults: filteredMarkers
+    })
+  }
 
   render() {
+    console.log(this.state.filteredMarkers)
     return (
       <div className="App">
         
@@ -98,8 +145,9 @@ class App extends Component {
 
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
           <Menu 
-            locations={this.state.locations}
+            {...this.state}
             showInfo={this.showInfo}
+            filterLocations={this.filterLocations}
           />
 
           <GoogleMapComponent
