@@ -1,3 +1,6 @@
+/************
+Start Globals
+************/
 * {
   margin: 0;
   padding: 0;
@@ -7,28 +10,27 @@
 li {
   list-style: none;
 }
+/************
+End Globals
+************/
+
+
+
 
 /************
 Start App
 ************/
 .App {
   text-align: center;
-  /* width:100%;
-  height: 100vh; */
   max-height: 100vh;
   overflow: hidden;
 }
 
 .App-header {
   z-index: 3;
-  /* position: fixed; */
   width: 100%;
-  background-color: #2f3640;
+  background-color: #0a3d62;
   min-height: 50px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   font-size: calc(10px + 2.5vmin);
   color: white;
 }
@@ -54,15 +56,15 @@ End App
 ************/
 
 
+
+
 /************
 Start Map Area
 ************/
-
 .Map-area {
   display: flex;
   min-height: 100%;
 }
-
 /************
 End Map Area
 ************/
@@ -78,7 +80,7 @@ Start Menu
   min-width: 300px;
   max-width: 400px;
   width: 30%;
-  background-color: #353b48;
+  background-color: #3c6382;
   color: #fff;
   text-align: center;
   line-height: 140%;
@@ -93,8 +95,8 @@ Start Menu
   padding: 25px;
   font-size: 1.3rem;
   font-weight: bolder;
-  color: #353b48;
-  background-color: #ecf0f1;
+  color: #0a3d62;
+  background-color: #fff;
 }
 
 .Menu li {
@@ -115,13 +117,13 @@ Start Menu
 .Places-height-tl {
   height: 100%;
   border-top: #fff 1px solid;
-  background-color: #2f3640;
+  background-color: #0a3d62;
   cursor: pointer;
 }
 
 .Places:hover {
   border-top: #fff 1px solid;
-  background-color: #2f3640;
+  background-color: #0a3d62;
   cursor: pointer;
 }
 
@@ -149,6 +151,13 @@ Start Menu
 /************
 End Menu
 ************/
+
+
+
+
+/************
+Start Filter
+************/
 .Filter {
   border-bottom: 2px solid #fff;
 }
@@ -163,7 +172,7 @@ End Menu
 }
 
 .Filter-dropdown:hover {
-  background-color: #2f3640;
+  background-color: #0a3d62;
 }
 
 .Filter-dropdown select {
@@ -172,12 +181,17 @@ End Menu
   width: 100%;
   display: none;
 }
-
 /************
-Start Google Maps
+End Filter
 ************/
 
 
+
+
 /************
-End Google Maps
+Start Media Queries
+************/
+
+/************
+End Media Queries
 ************/
