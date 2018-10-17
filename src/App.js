@@ -21,6 +21,7 @@ class App extends Component {
     this.clickMarker = this.clickMarker.bind(this)
     this.closeAllInfoWindow = this.closeAllInfoWindow.bind(this)
     this.filterLocations = this.filterLocations.bind(this)
+    this.enterKeyPressed = this.enterKeyPressed.bind(this)
   }
 
   componentDidMount() {
@@ -88,6 +89,13 @@ class App extends Component {
     }))
   }
 
+  enterKeyPressed(event, location) {
+    var code = event.keyCode || event.which;
+    if(code === 13) { 
+      this.showInfo(location)
+    } 
+  }
+
 
   // Shows infoWindow for only selected marker
   clickMarker = (marker) => {
@@ -147,6 +155,7 @@ class App extends Component {
           <Menu 
             {...this.state}
             showInfo={this.showInfo}
+            enterKeyPressed={this.enterKeyPressed}
             filterLocations={this.filterLocations}
           />
 
@@ -156,9 +165,7 @@ class App extends Component {
             clickMarker={this.clickMarker}
           />
         </div>
-        
 
-        
       </div>
     );
   }

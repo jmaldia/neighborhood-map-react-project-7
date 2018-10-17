@@ -9,7 +9,6 @@ class Menu extends Component {
     //     } 
     // }
 
-
     render() {
         return(
             <div className="Menu">
@@ -20,6 +19,7 @@ class Menu extends Component {
                 <div className="Filter">
                     <select 
                         className="Filter-dropdown" 
+                        tabindex="1"
                         onChange={(event) => this.props.filterLocations(event.target.value)}
                     >
                         <option value="All">All Locations</option>
@@ -46,14 +46,16 @@ class Menu extends Component {
 
                 <ol>
                     {
-                        this.props.results.map(location => {
+                        this.props.results.map((location, index) => {
                             let infoClass = location.infoOn ? 'Places-height-tl' : 'Places-height-sh'
 
                             return (
                                 <li 
                                     className={`Places ${infoClass}`} 
+                                    tabindex={index + 1}
                                     key={location.id} 
                                     onClick={ () => this.props.showInfo(location) }
+                                    onKeyPress={ (event) => this.props.enterKeyPressed(event, location) }
                                 >
                                     <h3>{location.name}</h3> 
                                     <div className="Places-image">   
@@ -71,7 +73,7 @@ class Menu extends Component {
                                             <p>Category: { location.categories ? <span>{location.categories[0].name}</span> : 'Uncategorized' }</p>
                                         </div>
                                         <div className="Places-delivery">
-                                            <p>{ location.delivery ? <a href={location.delivery.url}>Order Now</a> : 'Delivery not available'}</p>
+                                            <p>{ location.delivery ? <a tabindex="-1"  href={location.delivery.url}>Order Now</a> : 'Delivery not available'}</p>
                                         </div>
                                         
                                     </div>
