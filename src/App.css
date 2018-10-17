@@ -147,8 +147,24 @@ End Menu
 ************/
 
 
+.Filter-dropdown {
+  /* border-top: 2px solid #fff; */
+  border-bottom: 5px solid #fff;
+  padding: 20px;
+  cursor: pointer;
+  width: 100%;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1rem;
+}
 
+.Filter-dropdown:hover {
+  background-color: #2f3640;
+}
 
+.Filter-dropdown select {
+  width: 100%
+}
 
 /************
 Start Google Maps

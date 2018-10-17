@@ -11,12 +11,14 @@ class App extends Component {
     super(props)
     this.state = {
       locations: [],
+      results: [], 
       markers: []
     } 
 
     this.showInfo = this.showInfo.bind(this)
     this.clickMarker = this.clickMarker.bind(this)
     this.closeAllInfoWindow = this.closeAllInfoWindow.bind(this)
+    this.filterLocations = this.filterLocations.bind(this)
   }
 
   componentDidMount() {
@@ -48,6 +50,7 @@ class App extends Component {
 
       this.setState({ 
         locations: searchResults, 
+        results: searchResults,
         markers
       }) 
     })
@@ -87,6 +90,31 @@ class App extends Component {
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
 
+  filterLocations(value) {
+    let filteredLocations 
+    console.log(this.state.locations)
+    if (value === 'All') {
+      filteredLocations = this.state.locations
+    } else {
+      filteredLocations = this.state.locations.filter(location => location.categories[0].name === value)
+    }
+    
+    // let category = ''
+    // if (value === 'asian') {
+    //   category = 'Asian Restaurant'
+    // } 
+    // this.state.locations.forEach(location => {
+    //   console.log(location)
+    //   if (location.categories[0] === category) {
+    //     location.isVisible = true
+    //   } else {
+    //     location.isVisible = false
+    //   }
+    // })
+
+    this.setState({ results: filteredLocations })
+    this.setState((prevState) => ({ markers: prevState.markers }))
+  }
 
   render() {
     return (
@@ -98,8 +126,10 @@ class App extends Component {
 
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
           <Menu 
-            locations={this.state.locations}
+            {...this.state}
+            // locations={this.state.locations}
             showInfo={this.showInfo}
+            filterLocations={this.filterLocations}
           />
 
           <GoogleMapComponent
