@@ -2,16 +2,18 @@ import React from 'react';
 import '../App.css'
 
 const Menu = props => {
+    let menuButtonClass = props.menuButton ? 'Menu Menu-button-on' : 'Menu Menu-button-off'
+
     return(
-        <div aria-label="Sidebar Menu" role="Menu" className="Menu">
+        <div aria-label="Sidebar Menu" role="Menu" className={menuButtonClass} >
             <header>
                 <h2>THE SPOTS</h2>
             </header>
 
-            <div aria-label="Category Filter" role="Option" className="Filter">
+            <div aria-label="Category Filter" role="Option" aria-selected className="Filter">
                 <select 
                     className="Filter-dropdown" 
-                    tabindex="1"
+                    tabIndex="1"
                     onChange={(event) => props.filterLocations(event.target.value)}
                 >
                     <option value="All">All Locations</option>
@@ -40,11 +42,11 @@ const Menu = props => {
                 {
                     props.results.map((location, index) => {
                         let infoClass = location.infoOn ? 'Places-height-tl' : 'Places-height-sh'
-
+                        
                         return (
                             <li 
                                 className={`Places ${infoClass}`} 
-                                tabindex={index + 1}
+                                tabIndex={index + 1}
                                 key={location.id} 
                                 onClick={ () => props.showInfo(location) }
                                 onKeyPress={ (event) => props.enterKeyPressed(event, location) }
@@ -65,7 +67,7 @@ const Menu = props => {
                                         <p>Category: { location.categories ? <span>{location.categories[0].name}</span> : 'Uncategorized' }</p>
                                     </div>
                                     <div aria-label="Delivery Information" className="Places-delivery">
-                                        <p>{ location.delivery ? <a tabindex="-1"  href={location.delivery.url}>Order Now</a> : 'Delivery not available'}</p>
+                                        <p>{ location.delivery ? <a tabIndex="-1"  href={location.delivery.url}>Order Now</a> : 'Delivery not available'}</p>
                                     </div>
                                     
                                 </div>

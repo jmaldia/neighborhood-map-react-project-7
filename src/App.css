@@ -74,6 +74,10 @@ Start Menu Button
   color: #fff;
   display: none;
 }
+
+.Menu-button:hover {
+  background-color: #3c6382;
+}
 /************
 End Menu Button
 ************/
@@ -213,15 +217,27 @@ End Filter
 /************
 Start Media Queries
 ************/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .Menu {
     min-width: 0;
     width: 0;
     transform: translateX(-300px);
   }
-
+  
   .Menu-button {
     display: block;
+  }
+
+  .Menu-button-on {
+    min-width: 300px;
+    width: 100%;
+    transform: translateX(0);
+  }
+
+  .Menu-button-off {
+    min-width: 0;
+    width: 0;
+    transform: translateX(-300px);
   }
 }
 /************
