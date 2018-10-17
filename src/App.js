@@ -12,7 +12,9 @@ class App extends Component {
     this.state = {
       locations: [],
       results: [], 
-      markers: []
+      markers: [], 
+      resultsMarkers: [], 
+      categories: []
     } 
 
     this.showInfo = this.showInfo.bind(this)
@@ -29,6 +31,7 @@ class App extends Component {
           id: location.id,
           name: location.name, 
           address: location.location.address,
+          categories: location.categories[0].name, 
           lat: location.location.lat, 
           lng: location.location.lng, 
           isOpen: false, 
@@ -41,7 +44,6 @@ class App extends Component {
         FoursquareAPI.getPhoto(location.id)
           .then(photoURL => {
             location.photoSrc = photoURL
-            location.infoOn = false
             this.setState((prevState) => ({
                 locations: prevState.locations.filter(filteredLocations => filteredLocations.id !== location.id).concat([location])
             }))
@@ -51,7 +53,8 @@ class App extends Component {
       this.setState({ 
         locations: searchResults, 
         results: searchResults,
-        markers
+        markers, 
+        filteredMarkers: markers
       }) 
     })
   }
@@ -82,38 +85,32 @@ class App extends Component {
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
   
+  // Closes all the infoWindow - helper
   closeAllInfoWindow() {
     this.state.markers.forEach(markerMap => {
       markerMap.isOpen = false
     })
-
     this.setState((prevState) => ({ markers: prevState.markers }))
   }
 
+  // Function called by dropdown to filter by category
   filterLocations(value) {
     let filteredLocations 
-    console.log(this.state.locations)
+    let filteredMarkers
+
     if (value === 'All') {
+      console.log(this.state.markers)
       filteredLocations = this.state.locations
+      filteredMarkers = this.state.markers
     } else {
       filteredLocations = this.state.locations.filter(location => location.categories[0].name === value)
+      filteredMarkers = this.state.markers.filter(marker => marker.categories === value)
     }
-    
-    // let category = ''
-    // if (value === 'asian') {
-    //   category = 'Asian Restaurant'
-    // } 
-    // this.state.locations.forEach(location => {
-    //   console.log(location)
-    //   if (location.categories[0] === category) {
-    //     location.isVisible = true
-    //   } else {
-    //     location.isVisible = false
-    //   }
-    // })
 
-    this.setState({ results: filteredLocations })
-    this.setState((prevState) => ({ markers: prevState.markers }))
+    this.setState({ 
+      results: filteredLocations, 
+      resultsMarkers: filteredMarkers
+    })
   }
 
   render() {
@@ -127,7 +124,6 @@ class App extends Component {
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
           <Menu 
             {...this.state}
-            // locations={this.state.locations}
             showInfo={this.showInfo}
             filterLocations={this.filterLocations}
           />

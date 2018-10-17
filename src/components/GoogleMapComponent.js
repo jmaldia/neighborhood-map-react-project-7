@@ -12,7 +12,7 @@ const MapComponent = withScriptjs(withGoogleMap(props =>
     center={{ lat: 40.8257712, lng: -74.1074718 }}
   >
     { 
-        props.markers && props.markers.filter(marker => marker.isVisible).map((marker) => (
+        props.filteredMarkers && props.filteredMarkers.filter(marker => marker.isVisible).map((marker) => (
             <Marker 
                 key={`m-${marker.id}`} 
                 position={{ lat: marker.lat, lng: marker.lng }} 

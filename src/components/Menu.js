@@ -11,7 +11,6 @@ class Menu extends Component {
 
 
     render() {
-        console.log(this.state.locations)
         return(
             <div className="Menu">
                 <header>
@@ -23,24 +22,24 @@ class Menu extends Component {
                     onChange={(event) => this.props.filterLocations(event.target.value)}
                 >
                     <option value="All">All Locations</option>
-                    <option value="Bistro">Bistros</option>
-                    <option value="Asian Restaurant">Asian Restaurants</option>
-                    <option value="Falafel Restaurant">Falafel Restaurants</option>
-                    <option value="Sushi Restaurant">Sushi Restaurants</option>
-                    <option value="Breakfast Spot">Breakfast Spots</option>
-                    <option value="Cuban Restaurant">Cuban Restaurant</option>
-                    <option value="Greek Restaurant">Greek Restaurants</option>
-                    <option value="Ice Cream Shop">Ice Cream Spots</option>
-                    <option value="Italian Restaurant">Italian Restaurants</option>
                     <option value="New American Restaurant">American Restaurants</option>
+                    <option value="Asian Restaurant">Asian Restaurants</option>
+                    <option value="Bagel Shop">Bagel Spots</option>
+                    <option value="Bistro">Bistros</option>
+                    <option value="Breakfast Spot">Breakfast Spots</option>
                     <option value="Fried Chicken Joint">Chicken Spots</option>
                     <option value="Coffee Shop">Coffee Spots</option>
-                    <option value="Dessert Shop">Dessert Spots</option>
-                    <option value="Irish Pub">Irish Restaurants</option>
-                    <option value="Donut Shop">Donut Spots</option>
-                    <option value="Bagel Shop">Bagel Spots</option>
-                    <option value="Mexican Restaurant">Mexican Restaurants</option>
+                    <option value="Cuban Restaurant">Cuban Restaurant</option>
                     <option value="Deli / Bodega">Deli/Bodega Spots</option>
+                    <option value="Dessert Shop">Dessert Spots</option>
+                    <option value="Donut Shop">Donut Spots</option>
+                    <option value="Falafel Restaurant">Falafel Restaurants</option>
+                    <option value="Greek Restaurant">Greek Restaurants</option>
+                    <option value="Ice Cream Shop">Ice Cream Spots</option>
+                    <option value="Irish Pub">Irish Restaurants</option>
+                    <option value="Italian Restaurant">Italian Restaurants</option>
+                    <option value="Mexican Restaurant">Mexican Restaurants</option>
+                    <option value="Sushi Restaurant">Sushi Restaurants</option>
                 </select>
 
                 <ol>
