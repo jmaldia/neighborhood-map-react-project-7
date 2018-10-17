@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css'
 
 const Menu = props => {
@@ -12,7 +12,7 @@ const Menu = props => {
                 <select 
                     className="Filter-dropdown" 
                     tabindex="1"
-                    onChange={(event) => this.props.filterLocations(event.target.value)}
+                    onChange={(event) => props.filterLocations(event.target.value)}
                 >
                     <option value="All">All Locations</option>
                     <option value="New American Restaurant">American Restaurants</option>
@@ -38,7 +38,7 @@ const Menu = props => {
 
             <ol aria-label="List of Locations" >
                 {
-                    this.props.results.map((location, index) => {
+                    props.results.map((location, index) => {
                         let infoClass = location.infoOn ? 'Places-height-tl' : 'Places-height-sh'
 
                         return (
@@ -46,12 +46,12 @@ const Menu = props => {
                                 className={`Places ${infoClass}`} 
                                 tabindex={index + 1}
                                 key={location.id} 
-                                onClick={ () => this.props.showInfo(location) }
-                                onKeyPress={ (event) => this.props.enterKeyPressed(event, location) }
+                                onClick={ () => props.showInfo(location) }
+                                onKeyPress={ (event) => props.enterKeyPressed(event, location) }
                             >
                                 <h3>{location.name}</h3> 
                                 <div aria-label="Location Image" className="Places-image">   
-                                    <img src={location.photoSrc ? location.photoSrc : "https://via.placeholder.com/350x350"} width="100" alt={location.name}></img>
+                                    <img src={location.photoSrc ? location.photoSrc : "https://imgplaceholder.com/300x300/8ec9ee/ffffff?text=Sorry+the_br_image+for_br_this+location_br_is+not+available"} width="100" alt={location.name}></img>
                                 </div>
                                 <div aria-label="Location Information" className="Places-info">
                                     <div aria-label="Location Address" className="Places-address">
