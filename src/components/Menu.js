@@ -13,7 +13,7 @@ const Menu = props => {
             <div aria-label="Category Filter" role="Option" aria-selected className="Filter">
                 <select 
                     className="Filter-dropdown" 
-                    tabIndex="1"
+                    tabIndex="2"
                     onChange={(event) => props.filterLocations(event.target.value)}
                 >
                     <option value="All">All Locations</option>
@@ -46,7 +46,7 @@ const Menu = props => {
                         return (
                             <li 
                                 className={`Places ${infoClass}`} 
-                                tabIndex={index + 1}
+                                tabIndex={index + 2}
                                 key={location.id} 
                                 onClick={ () => props.showInfo(location) }
                                 onKeyPress={ (event) => props.enterKeyPressed(event, location) }

@@ -76,6 +76,7 @@ Start Menu Button
 }
 
 .Menu-button:hover {
+  /* visibility: hidden; */
   background-color: #3c6382;
 }
 /************

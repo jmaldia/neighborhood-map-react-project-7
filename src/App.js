@@ -95,18 +95,23 @@ class App extends Component {
 
   // For a11y - simulates click when location is focused and enter key pressed
   enterKeyPressed(event, location) {
-    var code = event.keyCode || event.which;
+    let code = event.keyCode || event.which;
     if(code === 13) { 
       this.showInfo(location)
     } 
   }
 
+  // For a11y - simulates click when menu is pressed using enter key
+  enterKeyPressedMobile(event) {
+    let code = event.keyCode || event.which;
+    if(code === 13) { 
+      this.menuButtonForMobile()
+    }
+  }
+
   // When menu button is clicked, the menu is shown
   menuButtonForMobile() {
-    this.setState({ 
-      menuButton: !this.state.menuButton 
-    })
-    console.log(this.state.menuButton)
+    this.setState({ menuButton: !this.state.menuButton })
   }
 
   // Shows infoWindow for only selected marker
@@ -163,10 +168,12 @@ class App extends Component {
         </header>
 
         <div 
+          tabIndex="1"
           className="Menu-button"
           aria-label="Menu" 
           role="Menu" 
           onClick={this.menuButtonForMobile}
+          onKeyPress={ (event) => this.enterKeyPressedMobile(event) }
         >
           Menu
         </div>
