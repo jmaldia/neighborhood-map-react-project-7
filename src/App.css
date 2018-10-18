@@ -216,6 +216,22 @@ End Filter
 
 
 /************
+Start Error Handlers
+************/
+.Error-boundary-google-map, .Error-boundary-foursquare {
+  width: 100%;
+  margin-top: 100px;
+  text-align: center;
+  color: #c0392b;
+}
+/************
+End Error Handlers
+************/
+
+
+
+
+/************
 Start Media Queries
 ************/
 @media only screen and (max-width: 650px) {
