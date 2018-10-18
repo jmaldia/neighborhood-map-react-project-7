@@ -21,3 +21,4 @@ The goal is to exhibit our skills in React, APIs, and other Front-End Technologi
 4. [https://imgplaceholder.com/](https://imgplaceholder.com/) - for the placeholder image
 5. [FourSquare API](https://developer.foursquare.com/places-api) - for location data
 6. [Google Maps API]() - for the map
+7. [Error Boundaries](https://reactjs.org/docs/error-boundaries.html) - for handling errors
