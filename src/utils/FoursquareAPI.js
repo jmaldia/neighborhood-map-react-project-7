@@ -23,7 +23,7 @@ export const search = () =>
 export const getPhoto = (venueId) =>
     fetch(`https://api.foursquare.com/v2/venues/${venueId}/photos?limit=1&client_id=${keys.fourSquare.clientID}&client_secret=${keys.fourSquare.clientSecret}&v=${version}`)
         .then(res => res.json())
-        .then(data => {  
+        .then(data => {
             if (data.meta.errorType) {
                 console.log(`Uh oh. Something happened. \nError: ${data.meta.errorDetail}`)
             } else {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as FoursquareAPI from './utils/FoursquareAPI'
 
+import ErrorBoundaryFourSquare from './errorHandlers/ErrorBoundaryFourSquare'
+import ErrorBoundaryGoogleMap from './errorHandlers/ErrorBoundaryGoogleMap'
 import Menu from './components/Menu'
 import GoogleMapComponent from './components/GoogleMapComponent'
 
@@ -51,8 +53,9 @@ class App extends Component {
             this.setState((prevState) => ({
                 locations: prevState.locations.filter(filteredLocations => filteredLocations.id !== location.id).concat([location])
             }))
-          }).catch(err => console.log(err))
+          })
       }) 
+    
 
       // Sets initial values for state
       this.setState({ 
@@ -179,18 +182,23 @@ class App extends Component {
         </div>
 
         <div className="Map-area" style={{ height: '100vh', width: '100%' }}>
-          <Menu 
-            {...this.state}
-            showInfo={this.showInfo}
-            enterKeyPressed={this.enterKeyPressed}
-            filterLocations={this.filterLocations}
-          />
+          <ErrorBoundaryFourSquare>
+            <Menu 
+              {...this.state}
+              showInfo={this.showInfo}
+              enterKeyPressed={this.enterKeyPressed}
+              filterLocations={this.filterLocations}
+            />
+          </ErrorBoundaryFourSquare>
+          
 
-          <GoogleMapComponent
-            {...this.state}
-            className="Google-maps"
-            clickMarker={this.clickMarker}
-          />
+          <ErrorBoundaryGoogleMap>
+            <GoogleMapComponent
+              {...this.state}
+              className="Google-maps"
+              clickMarker={this.clickMarker}
+            />
+          </ErrorBoundaryGoogleMap>
         </div>
 
       </div>
